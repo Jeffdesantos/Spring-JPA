@@ -1,6 +1,8 @@
 package com.example.redeSocial.entity;
 
 import javax.persistence. *;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Usuario {
@@ -8,12 +10,22 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column (length = 255)
-	private String nome;
+	
 	@Column (length = 100)
+	@NotEmpty
+	@Size(max = 100, message = "Obrigatório preenchimento")
+	private String nome;
+	
+	@Column (length = 100)
+	@NotEmpty
+	@Size(max = 100, message = "Obrigatório preenchimento")
 	private String email;
+	
 	@Column (length = 12)
+	@NotEmpty
+	@Size(max = 12, message = "Obrigatório preenchimento")
 	private String senha;
+	
 	@ManyToOne
 	private Estado id_estado;
 	
